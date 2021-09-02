@@ -1,15 +1,18 @@
 package com.gabrielpeixoto.studentapi.service;
 
-import com.gabrielpeixoto.studentapi.dto.MessageResponseDTO;
+import com.gabrielpeixoto.studentapi.dto.request.StudentDTO;
+import com.gabrielpeixoto.studentapi.dto.response.MessageResponseDTO;
 import com.gabrielpeixoto.studentapi.entity.Student;
+import com.gabrielpeixoto.studentapi.mapper.StudentMapper;
 import com.gabrielpeixoto.studentapi.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class StudentService {
     private StudentRepository studentRepository;
+
+    private final StudentMapper studentMapper = StudentMapper.INSTANCE;
 
     @Autowired
     public StudentService(StudentRepository studentRepository)
@@ -17,9 +20,10 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public MessageResponseDTO createStudent(Student student)
+    public MessageResponseDTO createStudent(StudentDTO student)
     {
-        Student savedStudent = studentRepository.save(student);
+        Student studentToSave = studentMapper.toModel(student);
+        Student savedStudent = studentRepository.save(studentToSave);
         return MessageResponseDTO
                 .builder().message("Created student with ID " + savedStudent.getId())
                 .build();

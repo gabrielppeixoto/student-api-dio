@@ -1,4 +1,4 @@
-package com.gabrielpeixoto.studentapi.dto;
+package com.gabrielpeixoto.studentapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
