@@ -30,10 +30,7 @@ public class SalaService {
     {
         Sala salaToSave = salaMapper.toModel(sala);
         Sala savedSala = salaRepository.save(salaToSave);
-        return MessageResponseDTO
-                .builder()
-                .message("Created room with ID " + savedSala.getId())
-                .build();
+        return createMessageResponse(savedSala.getId(), "Created room with ID ");
     }
 
     public List<SalaDTO> listAll() {
@@ -57,5 +54,20 @@ public class SalaService {
     {
         verifyIfExists(id);
         salaRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, SalaDTO salaDTO) throws SalaNotFoundException {
+        verifyIfExists(id);
+
+        Sala salaToSave = salaMapper.toModel(salaDTO);
+        Sala savedSala = salaRepository.save(salaToSave);
+        return createMessageResponse(savedSala.getId(), "Updated room with ID ");
+    }
+
+    private MessageResponseDTO createMessageResponse(Long id, String s) {
+        return MessageResponseDTO
+                .builder()
+                .message(s + id)
+                .build();
     }
 }

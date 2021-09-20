@@ -29,9 +29,7 @@ public class StudentService {
     {
         Student studentToSave = studentMapper.toModel(student);
         Student savedStudent = studentRepository.save(studentToSave);
-        return MessageResponseDTO
-                .builder().message("Created student with ID " + savedStudent.getId())
-                .build();
+        return createMessageResponse(savedStudent.getId(), "Created student with ID ");
     }
 
     public List<StudentDTO> findAll() {
@@ -55,5 +53,19 @@ public class StudentService {
     public void delete(Long id) throws StudentNotFoundException {
         verifyIfExists(id);
         studentRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, StudentDTO studentDTO) throws StudentNotFoundException {
+        verifyIfExists(id);
+
+        Student studentToSave = studentMapper.toModel(studentDTO);
+        Student savedStudent = studentRepository.save(studentToSave);
+        return createMessageResponse(savedStudent.getId(), "Updated student with ID ");
+    }
+
+    private MessageResponseDTO createMessageResponse(Long id, String s) {
+        return MessageResponseDTO
+                .builder().message(s + id)
+                .build();
     }
 }

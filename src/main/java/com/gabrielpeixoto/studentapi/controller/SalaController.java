@@ -46,4 +46,9 @@ public class SalaController {
     {
         salaService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody SalaDTO salaDTO) throws SalaNotFoundException {
+        return salaService.updateById(id, salaDTO);
+    }
 }

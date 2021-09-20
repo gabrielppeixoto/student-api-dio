@@ -46,4 +46,9 @@ public class DisciplinaController {
     {
         disciplinaService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody DisciplinaDTO disciplinaDTO) throws DisciplinaNotFoundException {
+        return disciplinaService.updateById(id, disciplinaDTO);
+    }
 }
