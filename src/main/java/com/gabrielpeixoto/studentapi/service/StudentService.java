@@ -41,12 +41,19 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
+    private Student verifyIfExists(Long id) throws StudentNotFoundException
+    {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException(id));
+    }
+
     public StudentDTO findById(Long id) throws StudentNotFoundException {
-        Optional<Student> optionalStudent = studentRepository.findById(id);
-        if(optionalStudent.isEmpty())
-        {
-            throw new StudentNotFoundException(id);
-        }
-        return studentMapper.toDTO(optionalStudent.get());
+        Student optionalStudent = verifyIfExists(id);
+        return studentMapper.toDTO(optionalStudent);
+    }
+
+    public void delete(Long id) throws StudentNotFoundException {
+        verifyIfExists(id);
+        studentRepository.deleteById(id);
     }
 }

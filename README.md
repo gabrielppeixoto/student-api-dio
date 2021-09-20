@@ -2,9 +2,6 @@
 Baseado em projeto da DIO. API de gerenciamento de estudantes e disciplinas.
 
 Funcionalidades:
-* Cadastrar estudante;
-* Cadastrar disciplina;
-* Cadastrar sala de aula;
-* Listar todos os estudantes;
-* Listar todas as disciplinas;
-* Listar todas as salas de aula;
+* Cadastrar estudante/disciplina/sala de aula;
+* Listar todos os estudantes/disciplinas/salas de aula;
+* Buscar estudante/disciplina/sala de aula por id;

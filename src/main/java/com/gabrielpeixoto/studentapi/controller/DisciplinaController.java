@@ -39,4 +39,11 @@ public class DisciplinaController {
     public DisciplinaDTO findById(@PathVariable Long id) throws DisciplinaNotFoundException {
         return disciplinaService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws DisciplinaNotFoundException
+    {
+        disciplinaService.delete(id);
+    }
 }

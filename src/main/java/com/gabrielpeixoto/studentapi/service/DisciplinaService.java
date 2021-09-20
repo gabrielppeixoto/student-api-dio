@@ -40,12 +40,19 @@ public class DisciplinaService {
                 .collect(Collectors.toList());
     }
 
+    private Disciplina verifyIfExists(Long id) throws DisciplinaNotFoundException
+    {
+        return disciplinaRepository.findById(id)
+                .orElseThrow(() -> new DisciplinaNotFoundException(id));
+    }
+
     public DisciplinaDTO findById(Long id) throws DisciplinaNotFoundException {
-        Optional<Disciplina> optionalDisciplina = disciplinaRepository.findById(id);
-        if(optionalDisciplina.isEmpty())
-        {
-            throw new DisciplinaNotFoundException(id);
-        }
-        return disciplinaMapper.toDTO(optionalDisciplina.get());
+        Disciplina optionalDisciplina = verifyIfExists(id);
+        return disciplinaMapper.toDTO(optionalDisciplina);
+    }
+
+    public void delete(Long id) throws DisciplinaNotFoundException{
+        verifyIfExists(id);
+        disciplinaRepository.deleteById(id);
     }
 }

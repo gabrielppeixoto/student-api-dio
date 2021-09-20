@@ -39,4 +39,11 @@ public class SalaController {
     public SalaDTO findById(@PathVariable Long id) throws SalaNotFoundException {
         return salaService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws SalaNotFoundException
+    {
+        salaService.delete(id);
+    }
 }
