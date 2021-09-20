@@ -28,9 +28,7 @@ public class DisciplinaService {
     {
         Disciplina disciplinaToSave = disciplinaMapper.toModel(disciplina);
         Disciplina savedDisciplina = disciplinaRepository.save(disciplinaToSave);
-        return MessageResponseDTO.builder()
-                .message("Created course with ID " + savedDisciplina.getId())
-                .build();
+        return createMessageResponse(savedDisciplina.getId(), "Created course with ID ");
     }
 
     public List<DisciplinaDTO> findAll() {
@@ -54,5 +52,19 @@ public class DisciplinaService {
     public void delete(Long id) throws DisciplinaNotFoundException{
         verifyIfExists(id);
         disciplinaRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, DisciplinaDTO disciplinaDTO) throws DisciplinaNotFoundException {
+        verifyIfExists(id);
+
+        Disciplina disciplinaToSave = disciplinaMapper.toModel(disciplinaDTO);
+        Disciplina savedDisciplina = disciplinaRepository.save(disciplinaToSave);
+        return createMessageResponse(savedDisciplina.getId(), "Updated course with ID ");
+    }
+
+    private MessageResponseDTO createMessageResponse(Long id, String s) {
+        return MessageResponseDTO.builder()
+                .message(s + id)
+                .build();
     }
 }

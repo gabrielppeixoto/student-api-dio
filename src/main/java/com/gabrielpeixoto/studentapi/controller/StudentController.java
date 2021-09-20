@@ -46,4 +46,9 @@ public class StudentController {
     public void deleteById(@PathVariable Long id) throws StudentNotFoundException {
         studentService.delete(id);
     }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid StudentDTO studentDTO) throws StudentNotFoundException {
+        return studentService.updateById(id, studentDTO);
+    }
 }
