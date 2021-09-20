@@ -5,3 +5,4 @@ Funcionalidades:
 * Cadastrar estudante/disciplina/sala de aula;
 * Listar todos os estudantes/disciplinas/salas de aula;
 * Buscar estudante/disciplina/sala de aula por id;
+* Atualizar estudante/disciplina/sal de aula por id.
