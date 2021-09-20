@@ -8,6 +8,7 @@ import com.gabrielpeixoto.studentapi.exception.SalaNotFoundException;
 import com.gabrielpeixoto.studentapi.exception.StudentNotFoundException;
 import com.gabrielpeixoto.studentapi.mapper.SalaMapper;
 import com.gabrielpeixoto.studentapi.repository.SalaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +17,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SalaService {
     private SalaRepository salaRepository;
 
     private final SalaMapper salaMapper = SalaMapper.INSTANCE;
-
-    @Autowired
-    public SalaService(SalaRepository salaRepository) {
-        this.salaRepository = salaRepository;
-    }
 
     public MessageResponseDTO createSala(SalaDTO sala)
     {

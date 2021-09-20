@@ -5,6 +5,7 @@ import com.gabrielpeixoto.studentapi.dto.response.MessageResponseDTO;
 import com.gabrielpeixoto.studentapi.entity.Sala;
 import com.gabrielpeixoto.studentapi.exception.SalaNotFoundException;
 import com.gabrielpeixoto.studentapi.service.SalaService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ap1/v1/sala")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SalaController {
     private SalaService salaService;
-
-    @Autowired
-    public SalaController(SalaService salaService) {
-        this.salaService = salaService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

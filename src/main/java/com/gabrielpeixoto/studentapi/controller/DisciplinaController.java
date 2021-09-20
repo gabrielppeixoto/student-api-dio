@@ -5,6 +5,7 @@ import com.gabrielpeixoto.studentapi.dto.response.MessageResponseDTO;
 import com.gabrielpeixoto.studentapi.entity.Disciplina;
 import com.gabrielpeixoto.studentapi.exception.DisciplinaNotFoundException;
 import com.gabrielpeixoto.studentapi.service.DisciplinaService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/disciplina")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DisciplinaController {
     private DisciplinaService disciplinaService;
-
-    @Autowired
-    public DisciplinaController(DisciplinaService disciplinaService) {
-        this.disciplinaService = disciplinaService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
