@@ -6,6 +6,7 @@ import com.gabrielpeixoto.studentapi.entity.Disciplina;
 import com.gabrielpeixoto.studentapi.exception.DisciplinaNotFoundException;
 import com.gabrielpeixoto.studentapi.mapper.DisciplinaMapper;
 import com.gabrielpeixoto.studentapi.repository.DisciplinaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DisciplinaService {
     private DisciplinaRepository disciplinaRepository;
 
     private final DisciplinaMapper disciplinaMapper = DisciplinaMapper.INSTANCE;
-
-    @Autowired
-    public DisciplinaService(DisciplinaRepository disciplinaRepository) {
-        this.disciplinaRepository = disciplinaRepository;
-    }
 
     public MessageResponseDTO createDisciplina(DisciplinaDTO disciplina)
     {

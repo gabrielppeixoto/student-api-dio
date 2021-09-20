@@ -6,6 +6,7 @@ import com.gabrielpeixoto.studentapi.entity.Student;
 import com.gabrielpeixoto.studentapi.exception.StudentNotFoundException;
 import com.gabrielpeixoto.studentapi.mapper.StudentMapper;
 import com.gabrielpeixoto.studentapi.repository.StudentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +15,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class StudentService {
     private StudentRepository studentRepository;
 
     private final StudentMapper studentMapper = StudentMapper.INSTANCE;
-
-    @Autowired
-    public StudentService(StudentRepository studentRepository)
-    {
-        this.studentRepository = studentRepository;
-    }
 
     public MessageResponseDTO createStudent(StudentDTO student)
     {

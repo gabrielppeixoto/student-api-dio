@@ -5,6 +5,7 @@ import com.gabrielpeixoto.studentapi.dto.response.MessageResponseDTO;
 import com.gabrielpeixoto.studentapi.entity.Student;
 import com.gabrielpeixoto.studentapi.exception.StudentNotFoundException;
 import com.gabrielpeixoto.studentapi.service.StudentService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/student")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class StudentController {
 
     private StudentService studentService;
-
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
